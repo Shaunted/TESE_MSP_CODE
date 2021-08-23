@@ -1,0 +1,1 @@
+"./msp430fr231x_P1_03.obj" "../lnk_msp430fr2311.cmd" -llibc.a 

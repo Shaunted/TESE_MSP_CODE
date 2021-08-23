@@ -1,0 +1,1 @@
+"./SPI_PWM_main.obj" "../lnk_msp430fr2311.cmd" -llibc.a 

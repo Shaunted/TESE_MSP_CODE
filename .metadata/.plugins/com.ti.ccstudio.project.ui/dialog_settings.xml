@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.ti.ccstudio.project.ui.internal.preferences.DynamicPreferencePageManager">
+		<item key="CCS.VIEW_ADVANCED" value="true"/>
+	</section>
+	<section name="com.ti.ccstudio.project.ui.internal.properties.DynamicPropertiesPageManager">
+	</section>
+	<section name="com.ti.ccstudio.project.ui.internal.wizards.importexport.ProjectImportPage">
+		<item key="CCS.BROWSE_DIRS_FILTER" value="C:\ti\housekeeping_example_pack_1_00_05\examples\7_segment_led_stopwatch\ccs"/>
+		<item key="CCS.COPY_INTO_WORKSPACE" value="true"/>
+		<item key="CCS.IMPORT_REFERENCED_PROJECTS" value="false"/>
+		<item key="CCS.IMPORT_FROM_ARCHIVE" value="false"/>
+	</section>
+	<section name="com.ti.ccstudio.project.ui.internal.wizards.project.ProjectSettingsPage">
+		<item key="CCS.TARGET" value="devices/MSP430FR2311.xml"/>
+		<section name="1">
+			<item key="CCS.OUTPUT_TYPE" value="executable"/>
+			<item key="CCS.LINKER_COMMAND_FILE" value="null"/>
+			<item key="CCS.RUNTIME_SUPPORT_LIB" value="null"/>
+		</section>
+	</section>
+	<section name="CCS.ImportLegacyProjectWizard">
+		<item key="AdvancedOptionsPage.USE_COMMON_ROOT" value="false"/>
+		<item key="AdvancedOptionsPage.COMMON_ROOT_VAR_NAME" value=""/>
+		<item key="AdvancedOptionsPage.COMMON_ROOT_PATH" value=""/>
+	</section>
+</section>

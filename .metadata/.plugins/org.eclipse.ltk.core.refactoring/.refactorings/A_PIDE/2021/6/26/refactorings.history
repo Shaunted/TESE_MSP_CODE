@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;A_PIDE/main.c&apos; to &apos;ADC_main.c&apos;" description="Rename resource &apos;main.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="main.c" name="ADC_main.c" stamp="1624656595561" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;A_PIDE/ADC_main.c&apos; to &apos;PID_ADC_main.c&apos;" description="Rename resource &apos;ADC_main.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="ADC_main.c" name="PID_ADC_main.c" stamp="1624656607201" updateReferences="true"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;A_PIDE_APANHOU_SPIDERMAN_NUM_PWM/SPI_PWM_main.c&apos; to &apos;SPI_PWM_ADC_PID_main.c&apos;" description="Rename resource &apos;SPI_PWM_main.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="SPI_PWM_main.c" name="SPI_PWM_ADC_PID_main.c" stamp="1624894283444" updateReferences="true"/>
+</session>

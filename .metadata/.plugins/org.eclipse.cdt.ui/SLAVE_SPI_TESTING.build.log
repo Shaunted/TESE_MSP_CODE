@@ -1,0 +1,21 @@
+
+**** Build of configuration Debug for project SLAVE_SPI_TESTING ****
+
+"C:\\ti\\ccs1011\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../spi.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --code_model=large --data_model=restricted --near_data=none --use_hw_mpy=none --include_path="C:/ti/ccs1011/ccs/ccs_base/msp430/include" --include_path="C:/Users/Asus/workspace_v10/SLAVE_SPI_TESTING" --include_path="C:/Users/Asus/workspace_v10/SLAVE_SPI_TESTING/driverlib/MSP430FR2xx_4xx" --include_path="C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="spi.d_raw"  "../spi.c"
+ 
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'spi.obj' failed
+"..\spi.h", line 34: error #20: identifier "class" is undefined
+"..\spi.h", line 34: error #66: expected a ";"
+"..\spi.h", line 44: warning #12-D: parsing restarts here after previous syntax error
+"../spi.c", line 15: fatal error #1965: cannot open source file "msp30.h"
+2 errors and 1 catastrophic error detected in the compilation of "../spi.c".
+Compilation terminated.
+gmake: *** [spi.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

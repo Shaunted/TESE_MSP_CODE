@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;timer_b_ex5_singlePWM&apos; to &apos;singlePWM&apos;" description="Rename resource &apos;timer_b_ex5_singlePWM&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/timer_b_ex5_singlePWM" name="singlePWM" stamp="1606918922466" updateReferences="true"/>
+</session>

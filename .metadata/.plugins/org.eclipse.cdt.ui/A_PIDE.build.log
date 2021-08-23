@@ -1,0 +1,25 @@
+
+**** Build of configuration Debug for project A_PIDE ****
+
+"C:\\ti\\ccs1011\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../main2.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --use_hw_mpy=none --include_path="C:/ti/ccs1011/ccs/ccs_base/msp430/include" --include_path="C:/Users/Asus/workspace_v10/A_PIDE" --include_path="C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="main2.d_raw"  "../main2.c"
+"../main2.c", line 51: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../main2.c", line 68: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
+"../main2.c", line 113: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main2.c", line 114: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../main2.c", line 123: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+Finished building: "../main2.c"
+ 
+Building target: "A_PIDE.out"
+Invoking: MSP430 Linker
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --use_hw_mpy=none --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"A_PIDE.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1011/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/lib" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="A_PIDE_linkInfo.xml" --use_hw_mpy=none --rom_model -o "A_PIDE.out" "./main2.obj" "../lnk_msp430fr2311.cmd"  -llibc.a 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+Finished building target: "A_PIDE.out"
+ 
+
+**** Build Finished ****

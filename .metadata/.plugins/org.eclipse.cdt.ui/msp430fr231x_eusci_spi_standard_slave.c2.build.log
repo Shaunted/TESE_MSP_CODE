@@ -1,0 +1,18 @@
+
+**** Build of configuration Debug for project msp430fr231x_eusci_spi_standard_slave.c2 ****
+
+"C:\\ti\\ccs1011\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../spi.cpp"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --use_hw_mpy=none --include_path="C:/ti/ccs1011/ccs/ccs_base/msp430/include" --include_path="C:/Users/Asus/workspace_v10/msp430fr231x_eusci_spi_standard_slave.c2" --include_path="C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="spi.d_raw"  "../spi.cpp"
+ 
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'spi.obj' failed
+"../spi.cpp", line 14: fatal error #1965: cannot open source file "driverlib.h"
+1 catastrophic error detected in the compilation of "../spi.cpp".
+Compilation terminated.
+gmake: *** [spi.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

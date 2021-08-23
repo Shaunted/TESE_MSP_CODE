@@ -1,0 +1,39 @@
+
+**** Build of configuration Debug for project SPI_SLAVE_TEST ****
+
+"C:\\ti\\ccs1011\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../spi.cpp"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --code_model=large --data_model=restricted --near_data=none --use_hw_mpy=none --include_path="C:/ti/ccs1011/ccs/ccs_base/msp430/include" --include_path="C:/Users/Asus/workspace_v10/SPI_SLAVE_TEST" --include_path="C:/Users/Asus/workspace_v10/SPI_SLAVE_TEST/driverlib/MSP430FR2xx_4xx" --include_path="C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="spi.d_raw"  "../spi.cpp"
+"../spi.cpp", line 57: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../spi.cpp", line 59: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../spi.cpp", line 60: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../spi.cpp", line 85: remark #1538-D: (ULP 10.1) ISR USCI_BO_ISR calls function EUSCI_B_SPI_transmitData. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../spi.cpp", line 88: remark #1538-D: (ULP 10.1) ISR USCI_BO_ISR calls function EUSCI_B_SPI_receiveData. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../spi.cpp", line 102: remark #1538-D: (ULP 10.1) ISR GPIO_PORT2_ISR calls function GPIO_clearInterrupt. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+Finished building: "../spi.cpp"
+ 
+Building target: "SPI_SLAVE_TEST.out"
+Invoking: MSP430 Linker
+"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --code_model=large --data_model=restricted --near_data=none --use_hw_mpy=none --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"SPI_SLAVE_TEST.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1011/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/lib" -i"C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="SPI_SLAVE_TEST_linkInfo.xml" --use_hw_mpy=none --rom_model -o "SPI_SLAVE_TEST.out" "./spi.obj" "./driverlib/MSP430FR2xx_4xx/adc.obj" "./driverlib/MSP430FR2xx_4xx/crc.obj" "./driverlib/MSP430FR2xx_4xx/cs.obj" "./driverlib/MSP430FR2xx_4xx/ecomp.obj" "./driverlib/MSP430FR2xx_4xx/eusci_a_spi.obj" "./driverlib/MSP430FR2xx_4xx/eusci_a_uart.obj" "./driverlib/MSP430FR2xx_4xx/eusci_b_i2c.obj" "./driverlib/MSP430FR2xx_4xx/eusci_b_spi.obj" "./driverlib/MSP430FR2xx_4xx/framctl.obj" "./driverlib/MSP430FR2xx_4xx/gpio.obj" "./driverlib/MSP430FR2xx_4xx/icc.obj" "./driverlib/MSP430FR2xx_4xx/lcd_e.obj" "./driverlib/MSP430FR2xx_4xx/mpy32.obj" "./driverlib/MSP430FR2xx_4xx/pmm.obj" "./driverlib/MSP430FR2xx_4xx/rtc.obj" "./driverlib/MSP430FR2xx_4xx/sac.obj" "./driverlib/MSP430FR2xx_4xx/sfr.obj" "./driverlib/MSP430FR2xx_4xx/sysctl.obj" "./driverlib/MSP430FR2xx_4xx/tia.obj" "./driverlib/MSP430FR2xx_4xx/timer_a.obj" "./driverlib/MSP430FR2xx_4xx/timer_b.obj" "./driverlib/MSP430FR2xx_4xx/tlv.obj" "./driverlib/MSP430FR2xx_4xx/wdt_a.obj" "../lnk_msp430fr2311.cmd"  -llibc.a 
+<Linking>
+ 
+ undefined first referenced                                                                                
+  symbol       in file                                                                                     
+ --------- ----------------                                                                                
+ main      C:\ti\ccs1011\ccs\tools\compiler\ti-cgt-msp430_20.2.1.LTS\lib\rts430x_lc_rd_eabi.lib<boot.c.obj>
+ 
+error #10234-D: unresolved symbols remain
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 1 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+error #10010: errors encountered during linking; "SPI_SLAVE_TEST.out" not built
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ 
+>> Compilation failure
+makefile:166: recipe for target 'SPI_SLAVE_TEST.out' failed
+gmake[1]: *** [SPI_SLAVE_TEST.out] Error 1
+makefile:162: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****

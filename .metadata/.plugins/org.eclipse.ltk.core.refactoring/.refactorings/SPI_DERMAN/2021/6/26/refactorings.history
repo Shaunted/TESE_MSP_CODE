@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SPI_DERMAN/msp430fr231x_euscib0_spi_12.c&apos; to &apos;SPI_main.c&apos;" description="Rename resource &apos;msp430fr231x_euscib0_spi_12.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="msp430fr231x_euscib0_spi_12.c" name="SPI_main.c" stamp="1624656585975" updateReferences="true"/>
+</session>
