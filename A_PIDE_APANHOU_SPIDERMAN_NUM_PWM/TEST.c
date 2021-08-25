@@ -168,12 +168,12 @@ int main(void)
                                             // to activate previously configured port settings
 
   // Configure ADC10
-  ADCCTL0 |= ADCSHT_2 | ADCON;                              // ADCON, S&H=16 ADC clks
-  ADCCTL1 |= ADCSHP;                                        // ADCCLK = MODOSC; sampling timer
-  ADCCTL2 |= ADCRES;                                        // 10-bit conversion results
-  ADCIE |= ADCIE0;                                          // Enable ADC conv complete interrupt
-  ADCMCTL0 |= ADCINCH_5 | ADCSREF_1;                        // A5 ADC input select; Vref=1.5V
-  ADCIE |= ADCIE0;                                          // Enable ADC conv complete interrupt
+   ADCCTL0 |= ADCMSC | ADCON;                              // ADCON, S&H=16 ADC clks
+   ADCCTL1 |= ADCSHP | ADCSHS_2 | ADCSSEL_2 | ADCCONSEQ_2;             // ADCCLK = MODOSC; sampling timer
+   ADCCTL2 |= ADCRES;                                        // 10-bit conversion results
+   ADCMCTL0 |= ADCINCH_5 | ADCSREF_1;                        // A5 ADC input select; Vref=1.5V
+   ADCIE |= ADCIE0;                                          // Enable ADC conv complete interrupt
+                                        // Enable ADC conv complete interrupt
 
   // Configure reference
   PMMCTL0_H = PMMPW_H;                                      // Unlock the PMM registers
@@ -181,30 +181,32 @@ int main(void)
   __delay_cycles(400);                                      // Delay for reference settling
 
 
-// ADC Timer CONFIG (TB1)
-  //    TB1CTL = TBSSEL__SMCLK | MC__UP | TBCLR;        // SMCLK, up mode, clear TBR
+  // ADC Timer CONFIG (TB1)
+     //    TB1CTL = TBSSEL__SMCLK | MC__UP | TBCLR;        // SMCLK, up mode, clear TBR
 
-//  TB1CCTL0 = CLLD_1;
-  TB1CCTL1 = OUTMOD_7;                            // CCR1 reset/set
-  TB1CCR0 = 10450;                                // PWM Period -> 100 Hz
-  TB1CCR1 = UMAX*0;
-  TB1CTL = TBSSEL__SMCLK | MC__UP | TBCLR | CNTL__16;
+   //  TB1CCTL0 = CLLD_1;
+   TB1CCTL1 = OUTMOD_3;                            // CCR1 reset/set
+   TB1CCR0 = 32788;                                // PWM Period -> around 61 Hz
+   TB1CCR1 = 16394;
+   TB1CTL = TBSSEL__SMCLK | MC__UP | TBCLR | CNTL__16 | ID_3; // SMCLK/8, up mode
+
 
 
   // PWM Config (TB0)
   TB0CCTL1 = OUTMOD_7;                            // CCR1 reset/set
   TB0CTL = TBSSEL__SMCLK | MC__CONTINUOUS | TBCLR | CNTL__16;
-
+  TB0CCR1 = UMAX*0;
 
 //  while(1){
 //      __bis_SR_register(LPM0_bits | GIE);       // Enter LPM0, enable interrupts
 //      TB1CCR1 = ReceivedValue;
 //
 //  }
+  ADCCTL0 |= ADCENC;                            // Sampling and conversion start
+
 
   while(1)
   {
-      ADCCTL0 |= ADCENC | ADCSC;                            // Sampling and conversion start
 //      __bis_SR_register(LPM0_bits | GIE);                   // LPM0, ADC_ISR will force exit
 
       PID_function(ADC_Result);
@@ -271,14 +273,14 @@ void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
 
     switch(ReceiveBuffer[0]){
         case 0xFF:
-            P1OUT |= BIT0;
+            UCB0TXBUF = ReceiveBuffer[0];
 //            if(TransmitIndex < sizeof(TransmitBuffer)){
 //                UCB0TXBUF = TransmitBuffer[TransmitIndex];
                 break;
 //            }
 
         case 0x00:
-            P2OUT |= BIT0;
+            UCB0TXBUF = ReceiveBuffer[0];
 //            if(ReceiveIndex > 2){
 //                ReceivedValue = ((ReceiveBuffer[2]<<8)|ReceiveBuffer[3]);
 //                ideal = ReceivedValue;

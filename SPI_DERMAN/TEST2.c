@@ -131,18 +131,17 @@ void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
 //    UCB0IFG &= ~UCRXIFG;
 
     ReceiveBuffer[ReceiveIndex++] = ucb0_rx_val;
-//    UCB0TXBUF=ReceiveBuffer[ReceiveIndex-1];
 
     switch(ReceiveBuffer[0]){
         case 0xFF:
-            UCB0TXBUF = ucb0_rx_val;
+            UCB0TXBUF = ReceiveBuffer[0];
 //            if(TransmitIndex < sizeof(TransmitBuffer)){
 //                UCB0TXBUF = TransmitBuffer[TransmitIndex];
                 break;
 //            }
 
         case 0x00:
-            UCB0TXBUF = 3;
+            UCB0TXBUF = ReceiveBuffer[0];
 //            if(ReceiveIndex > 2){
 //                ReceivedValue = ((ReceiveBuffer[2]<<8)|ReceiveBuffer[3]);
 //                ideal = ReceivedValue;
@@ -151,7 +150,6 @@ void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
     }
 
     if(ReceiveIndex == sizeof(ReceiveBuffer)){
-
         ReceiveIndex = 0;
         TransmitIndex = 0;
 //        __bic_SR_register_on_exit(LPM0_bits);              // Clear CPUOFF bit from LPM0

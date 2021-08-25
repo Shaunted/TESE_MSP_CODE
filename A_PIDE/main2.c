@@ -80,7 +80,7 @@ int main(void)
 
       // PWM Config (TB0)
     TB0CCTL1 = OUTMOD_7;                            // CCR1 reset/set
-    TB0CCR1 = UMAX*0
+    TB0CCR1 = UMAX*0;
     TB0CTL = TBSSEL__SMCLK | MC__CONTINUOUS | TBCLR | CNTL__16;
 
     ADCCTL0 |= ADCENC;                            // Sampling and conversion start

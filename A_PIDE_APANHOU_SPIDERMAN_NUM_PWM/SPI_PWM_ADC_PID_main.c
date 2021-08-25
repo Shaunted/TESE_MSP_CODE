@@ -89,11 +89,19 @@ void PID_function(uint16_t sensor);
 //#define IDEAL   512
 
 
+//// SPI Variables
+//
+//uint8_t ReceiveBuffer[2] = {0};
+//uint8_t ReceiveIndex = 0;
+//uint16_t ReceivedValue = 0;
+
 // SPI Variables
 
-uint8_t ReceiveBuffer[2] = {0};
+uint8_t ReceiveBuffer[8] = {0};
 uint8_t ReceiveIndex = 0;
 uint16_t ReceivedValue = 0;
+uint8_t TransmitBuffer[8] = {0};
+uint8_t TransmitIndex = 0;
 
 
 // ADC/PID Variables
@@ -243,22 +251,52 @@ void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
 #else
 #error Compiler not supported!
 #endif
+//{
+//    P2OUT &= ~BIT0;
+//    P1OUT &= ~BIT0;
+//    uint8_t ucb0_rx_val = UCB0RXBUF;
+////    UCB0IFG &= ~UCRXIFG;
+//    ReceiveBuffer[ReceiveIndex++] = ucb0_rx_val;
+//    if(ReceiveIndex == 2){
+//        ReceiveIndex = 0;
+//        ReceivedValue = ((ReceiveBuffer[0]<<8)|ReceiveBuffer[1]);
+//        ideal = ReceivedValue;
+//        UCB0IFG &= ~UCRXIFG;
+//        __bic_SR_register_on_exit(LPM0_bits);              // Clear CPUOFF bit from LPM0
+//    }
+////    UCB0TXBUF = ucb0_rx_val;
+//}
 {
     P2OUT &= ~BIT0;
     P1OUT &= ~BIT0;
     uint8_t ucb0_rx_val = UCB0RXBUF;
 //    UCB0IFG &= ~UCRXIFG;
-    ReceiveBuffer[ReceiveIndex++] = ucb0_rx_val;
-    if(ReceiveIndex == 2){
-        ReceiveIndex = 0;
-        ReceivedValue = ((ReceiveBuffer[0]<<8)|ReceiveBuffer[1]);
-        ideal = ReceivedValue;
-        UCB0IFG &= ~UCRXIFG;
-        __bic_SR_register_on_exit(LPM0_bits);              // Clear CPUOFF bit from LPM0
-    }
-//    UCB0TXBUF = ucb0_rx_val;
-}
 
+    ReceiveBuffer[ReceiveIndex++] = ucb0_rx_val;
+
+    switch(ReceiveBuffer[0]){
+        case 0xFF:
+            UCB0TXBUF = ReceiveBuffer[0];
+//            if(TransmitIndex < sizeof(TransmitBuffer)){
+//                UCB0TXBUF = TransmitBuffer[TransmitIndex];
+                break;
+//            }
+
+        case 0x00:
+            UCB0TXBUF = ReceiveBuffer[0];
+//            if(ReceiveIndex > 2){
+//                ReceivedValue = ((ReceiveBuffer[2]<<8)|ReceiveBuffer[3]);
+//                ideal = ReceivedValue;
+                break;
+//            }
+    }
+
+    if(ReceiveIndex == sizeof(ReceiveBuffer)){
+        ReceiveIndex = 0;
+        TransmitIndex = 0;
+//        __bic_SR_register_on_exit(LPM0_bits);              // Clear CPUOFF bit from LPM0
+    }
+}
 
 // ADC interrupt service routine
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
