@@ -5,7 +5,7 @@ void PID_function(uint16_t sensor);
 
 
 #define UMAX    65535
-#define DT      655
+#define DT      655     // 100 Hz, dt = 0.01
 #define KP      5
 #define KI      5
 #define IDEAL   512
