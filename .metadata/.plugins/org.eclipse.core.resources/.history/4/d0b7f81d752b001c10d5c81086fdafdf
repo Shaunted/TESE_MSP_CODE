@@ -83,8 +83,7 @@ void PID_function(uint16_t sensor);
 
 // PID Defines
 
-#define UMAX    65535 // Around 3.3V
-#define UMIN    19858 // Around 1V
+#define UMAX    65535
 #define DT      655
 #define KP      5
 #define KI      5
