@@ -6,11 +6,11 @@
 Building file: "../TEST2.c"
 Invoking: MSP430 Compiler
 "C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/bin/cl430" -vmspx --use_hw_mpy=none --include_path="C:/ti/ccs1011/ccs/ccs_base/msp430/include" --include_path="C:/Users/Asus/workspace_v10/A_PIDE_APANHOU_SPIDERMAN_NUM_PWM" --include_path="C:/ti/ccs1011/ccs/tools/compiler/ti-cgt-msp430_20.2.1.LTS/include" --advice:power=all --advice:hw_config=all --define=__MSP430FR2311__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="TEST2.d_raw"  "../TEST2.c"
-"../TEST2.c", line 143: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
-"../TEST2.c", line 178: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
-"../TEST2.c", line 238: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../TEST2.c", line 137: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../TEST2.c", line 169: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
 "../TEST2.c", line 239: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
-"../TEST2.c", line 248: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../TEST2.c", line 240: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../TEST2.c", line 252: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
 Finished building: "../TEST2.c"
  
 Building target: "A_PIDE_APANHOU_SPIDERMAN_NUM_PWM.out"
