@@ -61,7 +61,7 @@
 #include "driverlib.h"
 
 #define TIMER_PERIOD 10450
-#define DUTY_CYCLE  5225
+#define DUTY_CYCLE  2000
 
 void main (void)
 {

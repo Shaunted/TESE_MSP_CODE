@@ -11,9 +11,10 @@ int main(void)
     WDTCTL = WDTPW | WDTHOLD;	    // stop watchdog timer
 
 
-    P2DIR |= BIT0;                  // P2.0 output
-    P2SEL0 |= BIT0;                 // P2.0 options select
-    P2SEL1 &= ~BIT0;
+    // Configure PWM 1.6 pin
+    P1DIR |= BIT6;                  // P1.6 output
+    P1SEL0 &= ~BIT6;                 // P1.6 options select
+    P1SEL1 |= BIT6;
 
     // Configure one FRAM waitstate as required by the device datasheet for MCLK
     // operation beyond 8MHz _before_ configuring the clock system.
@@ -39,13 +40,13 @@ int main(void)
 
 
 //    TB1CTL = TBSSEL__SMCLK | MC__UP | TBCLR;        // SMCLK, up mode, clear TBR
-    TB1CTL = TBSSEL__SMCLK | MC__CONTINUOUS | TBCLR | CNTL__16;
+
 //    TB1CCR0 = 10450;                                // PWM Period -> 100 Hz
-    TB1CCTL0 = CLLD_1;
-    TB1CCTL1 = OUTMOD_7;                            // CCR1 reset/set
+//    TB0CCTL0 = CLLD_1;
+    TB0CCTL1 = OUTMOD_7;                            // CCR1 reset/set
 
 
-    TB1CCR1 = 1000;
+    TB0CCR1 = 32767;
 //    TB1CCR1 = 523;                 // CCR1 PWM duty cycle 5%
 //    TB1CCR1 = 1045;                // CCR1 PWM duty cycle 10%
 //    TB1CCR1 = 1568;                // CCR1 PWM duty cycle 15%
@@ -67,6 +68,7 @@ int main(void)
 //    TB1CCR1 = 9928;                // CCR1 PWM duty cycle 95%
 //    TB1CCR1 = 10450;               // CCR1 PWM duty cycle 100%
 
+    TB0CTL = TBSSEL__SMCLK | MC__CONTINUOUS | TBCLR | CNTL__16;
 
     return 0;
 }
