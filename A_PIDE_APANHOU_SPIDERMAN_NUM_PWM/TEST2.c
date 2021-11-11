@@ -87,7 +87,7 @@ void PID_function(uint16_t sensor);
 #define DT      655200
 #define KP      100
 #define KI      25
-//#define IDEAL   512
+//#define ideal   512
 
 // SPI Variables
 
@@ -119,6 +119,9 @@ int main(void)
 // Configure ADC A5 pin
     P1SEL0 |= BIT5;
     P1SEL1 |= BIT5;
+
+    P2DIR |= BIT0;
+    P2OUT &= ~BIT0;
 
 // CLOCK CONFIG
 
@@ -183,7 +186,7 @@ int main(void)
 
     ADCCTL0 |= ADCENC;                          // Sampling and conversion start
 
-//    __bis_SR_register(LPM0_bits | GIE);
+    __bis_SR_register(LPM0_bits | GIE);
 
     while (1)
     {
@@ -321,6 +324,7 @@ void __attribute__ ((interrupt(ADC_VECTOR))) ADC_ISR (void)
     case ADCIV_ADCINIFG:
         break;
     case ADCIV_ADCIFG:
+        P2OUT ^= BIT0;
         ADC_Result = ADCMEM0;
         ADC_FLAG = 1;
         __bic_SR_register_on_exit(LPM0_bits);      // Clear CPUOFF bit from LPM0

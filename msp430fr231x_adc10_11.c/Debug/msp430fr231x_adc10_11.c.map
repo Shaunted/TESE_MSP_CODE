@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v20.2.1                     
 ******************************************************************************
->> Linked Wed Jul 28 16:32:08 2021
+>> Linked Mon Nov  8 14:39:04 2021
 
 OUTPUT FILE NAME:   <msp430fr231x_adc10_11.c.out>
-ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 0000f1b8
+ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 0000f1c4
 
 
 MEMORY CONFIGURATION
@@ -13,7 +13,7 @@ MEMORY CONFIGURATION
 ----------------------  --------  ---------  --------  --------  ----  --------
   BSL0                  00001000   00000800  00000000  00000800  RWIX
   RAM                   00002000   00000400  000000a0  00000360  RWIX
-  FRAM                  0000f100   00000e80  000000d4  00000dac  RWIX
+  FRAM                  0000f100   00000e80  000000e0  00000da0  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   INT00                 0000ff88   00000002  00000000  00000002  RWIX
@@ -104,16 +104,16 @@ section   page    origin      length       input sections
 
 .const     0    0000f100    00000000     UNINITIALIZED
 
-.text      0    0000f100    00000098     
-                  0000f100    0000008e     msp430fr231x_adc10_11.obj (.text:main)
-                  0000f18e    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
-                  0000f194    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+.text      0    0000f100    000000a0     
+                  0000f100    00000096     msp430fr231x_adc10_11.obj (.text:main)
+                  0000f196    00000006     rts430x_lc_sd_eabi.lib : exit.c.obj (.text:abort)
+                  0000f19c    00000004                            : pre_init.c.obj (.text:_system_pre_init)
 
 .text:_isr 
-*          0    0000f198    0000003c     
-                  0000f198    00000020     msp430fr231x_adc10_11.obj (.text:_isr:ADC_ISR)
-                  0000f1b8    00000014     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noinit_noargs)
-                  0000f1cc    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    0000f1a0    00000040     
+                  0000f1a0    00000024     msp430fr231x_adc10_11.obj (.text:_isr:ADC_ISR)
+                  0000f1c4    00000014     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noinit_noargs)
+                  0000f1d8    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
 .stack     0    00002360    000000a0     UNINITIALIZED
                   00002360    00000002     rts430x_lc_sd_eabi.lib : boot.c.obj (.stack)
@@ -179,9 +179,9 @@ MODULE SUMMARY
        Module                      code   ro data   rw data
        ------                      ----   -------   -------
     .\
-       msp430fr231x_adc10_11.obj   174    2         0      
+       msp430fr231x_adc10_11.obj   186    2         0      
     +--+---------------------------+------+---------+---------+
-       Total:                      174    2         0      
+       Total:                      186    2         0      
                                                            
     C:\ti\ccs1011\ccs\tools\compiler\ti-cgt-msp430_20.2.1.LTS\lib\rts430x_lc_sd_eabi.lib
        boot.c.obj                  20     2         0      
@@ -206,7 +206,7 @@ MODULE SUMMARY
                                                            
        Stack:                      0      0         160    
     +--+---------------------------+------+---------+---------+
-       Grand Total:                212    30        160    
+       Grand Total:                224    30        160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -243,7 +243,7 @@ address   name
 00000712  ADCMEM0               
 00000713  ADCMEM0_H             
 00000712  ADCMEM0_L             
-0000f198  ADC_ISR               
+0000f1a0  ADC_ISR               
 00000660  BAKMEM0               
 00000661  BAKMEM0_H             
 00000660  BAKMEM0_L             
@@ -292,7 +292,7 @@ address   name
 00000672  BAKMEM9               
 00000673  BAKMEM9_H             
 00000672  BAKMEM9_L             
-0000f18e  C$$EXIT               
+0000f196  C$$EXIT               
 000002ee  CAPTIOCTL             
 000002ef  CAPTIOCTL_H           
 000002ee  CAPTIOCTL_L           
@@ -669,7 +669,7 @@ address   name
 000001cc  WDTCTL_L              
 00002400  __STACK_END           
 000000a0  __STACK_SIZE          
-0000f1cc  __TI_ISR_TRAP         
+0000f1d8  __TI_ISR_TRAP         
 0000ffe2  __TI_int45            
 0000ffe4  __TI_int46            
 0000ffe6  __TI_int47            
@@ -688,11 +688,11 @@ ffffffff  __TI_pprof_out_hndl
 ffffffff  __TI_prof_data_size   
 ffffffff  __TI_prof_data_start  
 ffffffff  __c_args__            
-0000f1b8  _c_int00_noinit_noargs
+0000f1c4  _c_int00_noinit_noargs
 0000fffe  _reset_vector         
 00002360  _stack                
-0000f194  _system_pre_init      
-0000f18e  abort                 
+0000f19c  _system_pre_init      
+0000f196  abort                 
 0000f100  main                  
 
 
@@ -1156,12 +1156,12 @@ address   name
 00002360  _stack                
 00002400  __STACK_END           
 0000f100  main                  
-0000f18e  C$$EXIT               
-0000f18e  abort                 
-0000f194  _system_pre_init      
-0000f198  ADC_ISR               
-0000f1b8  _c_int00_noinit_noargs
-0000f1cc  __TI_ISR_TRAP         
+0000f196  C$$EXIT               
+0000f196  abort                 
+0000f19c  _system_pre_init      
+0000f1a0  ADC_ISR               
+0000f1c4  _c_int00_noinit_noargs
+0000f1d8  __TI_ISR_TRAP         
 0000ffe2  __TI_int45            
 0000ffe4  __TI_int46            
 0000ffe6  __TI_int47            

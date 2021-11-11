@@ -80,17 +80,19 @@
 
 // Function Defines~
 
-void PID_function(uint16_t sensor);
+void PID_function(uint16_t sensor, int64_t *u, int64_t *error_i, bool set);
 
 // PID Defines
 
 #define UMAX    65535 // Around 3.3V
 #define UMIN    19858 // Around 1V
-#define DT      655
-#define KP      100
-#define KI      25
+#define DT      65
+#define KP      200
+#define KI      100
 
-#define ideal 100
+#define ideal 200
+
+#define ideal_heat 700
 
 uint16_t ADC_Result[3];                    // 12-bit ADC conversion result array
 uint8_t i;
@@ -98,10 +100,12 @@ uint8_t i;
 uint32_t val = 0;
 
 int32_t error;      // Q0
-int64_t u = 0;
-int64_t error_i = 0;
-//int64_t u2 = 0;
-//int64_t error_i2 = 0;
+int64_t u_pump = 0;
+int64_t error_i_pump = 0;
+int64_t u_heater = 0;
+int64_t error_i_heater = 0;
+
+bool set;
 
 int main(void)
 {
@@ -120,6 +124,9 @@ int main(void)
     P1DIR |= BIT7;                  // P1.6 output
     P1SEL0 &= ~BIT7;                 // P1.6 options select
     P1SEL1 |= BIT7;
+
+    P2DIR |= BIT0 | BIT1;
+    P2OUT &= ~(BIT0 | BIT1);
 
     // Disable the GPIO power-on default high-impedance mode to activate
     // previously configured port settings
@@ -173,23 +180,24 @@ int main(void)
     i = 2;
     ADCCTL0 |= ADCENC;                                       // Enable ADC
     TB1CTL |= TBCLR;
+
     while (1)
     {          // Clear TAR to start the ADC sample
         __bis_SR_register(LPM0_bits | GIE);          // Enter LPM0 w/ interrupts
         if (i == 2)
         {
-            val = (ADC_Result[1] + ADC_Result[2]) >> 2;
-            PID_function(ADC_Result[0]);
-            if (u >= 0)
+            val = (ADC_Result[1] + ADC_Result[2]) >> 1;
+            PID_function(ADC_Result[0], &u_pump, &error_i_pump, 0);
+            if (u_pump >= 0)
             {
-                if (u > UMAX)
+                if (u_pump > UMAX)
                 {
                     TB0CCR1 = UMAX;
                 }
 
                 else
                 {
-                    TB0CCR1 = u;
+                    TB0CCR1 = u_pump;
                 }
 
             }
@@ -197,51 +205,60 @@ int main(void)
             {
                 TB0CCR1 = 0;
             }
-//            PID_function(val, u2, error_i2);
-//            if (u2 >= 0)
-//            {
-//                if (u2 > UMAX)
-//                {
-//                    TB0CCR2 = UMAX;
-//                }
-//
-//                else
-//                {
-//                    TB0CCR2 = u2;
-//                }
-//
-//            }
-//            else
-//            {
-//                TB0CCR2 = 0;
-//            }
+            PID_function(val, &u_heater, &error_i_heater, 1);
+            if (u_heater >= 0)
+            {
+                if (u_heater > UMAX)
+                {
+                    TB0CCR2 = UMAX;
+                }
+
+                else
+                {
+                    TB0CCR2 = u_heater;
+                }
+
+            }
+            else
+            {
+                TB0CCR2 = 0;
+            }
         }
 
     }
 }
 
-void PID_function(uint16_t sensor)
+void PID_function(uint16_t sensor, int64_t *u, int64_t *error_i, bool set)
 {
-    ADCIE &= ~ADCIE0;                      // Enable ADC conv complete interrupt
+    P2OUT |= BIT1;
 // Control Logic
-    error = ideal;
-    error = error - sensor;
-    u = KP * error;                // Q0 = Q0*Q0
-    u = (u << 16) + KI * error_i;            // Q16 = Q16 + Q16
-    u = u >> 16;
-
-// Anti-windup
-    if ((u >= UMAX || u < 0)
-            && (((error >= 0) && (error_i >= 0))
-                    || ((error < 0) && (error_i < 0))))
+    if (set == 1)
     {
-        error_i = error_i;
+
+        error = ideal_heat;
+        error = sensor - error;
     }
     else
     {
-        error_i = error_i + DT * error;  // Q16
+        error = ideal;
+        error = error - sensor;
     }
-    ADCIE |= ADCIE0;                       // Enable ADC conv complete interrupt
+    *u = KP * error;                // Q0 = Q0*Q0
+    *u = (*u << 16) + KI * (*error_i);            // Q16 = Q16 + Q16
+    *u = *u >> 16;
+
+// Anti-windup
+    if ((*u >= UMAX || *u < 0)
+            && (((error >= 0) && (*error_i >= 0))
+                    || ((error < 0) && (*error_i < 0))))
+    {
+        *error_i = *error_i;
+    }
+    else
+    {
+        *error_i = *error_i + DT * error;  // Q16
+    }
+    P2OUT &= ~BIT1;
 }
 
 // ADC interrupt service routine
@@ -273,7 +290,7 @@ void __attribute__ ((interrupt(ADC_VECTOR))) ADC_ISR (void)
         ADC_Result[i] = ADCMEM0;
         if (i == 0)
         {
-//                __no_operation();   // Only for debug
+            P2OUT ^= BIT0;
             i = 2;
             __bic_SR_register_on_exit(LPM0_bits); // Clear CPUOFF bit from LPM0
         }

@@ -86,6 +86,9 @@ int main(void)
     P1SEL0 |=  BIT0 + BIT1 + BIT2;
     P1SEL1 |=  BIT0 + BIT1 + BIT2;
 
+    P2DIR |= BIT0;
+    P2OUT &= ~BIT0;
+
     // Disable the GPIO power-on default high-impedance mode to activate
     // previously configured port settings
     PM5CTL0 &= ~LOCKLPM5;
@@ -149,6 +152,7 @@ void __attribute__ ((interrupt(ADC_VECTOR))) ADC_ISR (void)
             break;
         case ADCIV_ADCIFG:
             ADC_Result[i] = ADCMEM0;
+            P2OUT ^= BIT0;
             if(i == 0)
             {
                 __no_operation();   // Only for debug
