@@ -78,7 +78,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// Function Defines~
+// Function Defines
 
 void PID_function(uint16_t sensor, int64_t *u, int64_t *error_i, bool set);
 

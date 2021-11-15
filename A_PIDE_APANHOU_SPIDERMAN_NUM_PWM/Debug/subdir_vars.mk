@@ -9,21 +9,21 @@ CMD_SRCS += \
 ../lnk_msp430fr2311.cmd 
 
 C_SRCS += \
-../TEST2.c 
+../TEST_2PID.c 
 
 C_DEPS += \
-./TEST2.d 
+./TEST_2PID.d 
 
 OBJS += \
-./TEST2.obj 
+./TEST_2PID.obj 
 
 OBJS__QUOTED += \
-"TEST2.obj" 
+"TEST_2PID.obj" 
 
 C_DEPS__QUOTED += \
-"TEST2.d" 
+"TEST_2PID.d" 
 
 C_SRCS__QUOTED += \
-"../TEST2.c" 
+"../TEST_2PID.c" 
 
 

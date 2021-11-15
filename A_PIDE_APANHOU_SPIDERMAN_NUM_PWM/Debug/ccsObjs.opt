@@ -1,1 +1,1 @@
-"./TEST2.obj" "../lnk_msp430fr2311.cmd" -llibc.a 
+"./TEST_2PID.obj" "../lnk_msp430fr2311.cmd" -llibc.a 

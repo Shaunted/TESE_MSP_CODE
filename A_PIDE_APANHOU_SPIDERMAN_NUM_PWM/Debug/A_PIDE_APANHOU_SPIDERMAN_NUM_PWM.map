@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v20.2.1                     
 ******************************************************************************
->> Linked Thu Nov 11 11:40:41 2021
+>> Linked Mon Nov 15 16:38:00 2021
 
 OUTPUT FILE NAME:   <A_PIDE_APANHOU_SPIDERMAN_NUM_PWM.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000f802
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000f8c2
 
 
 MEMORY CONFIGURATION
@@ -12,8 +12,8 @@ MEMORY CONFIGURATION
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
   BSL0                  00001000   00000800  00000000  00000800  RWIX
-  RAM                   00002000   00000400  000000d0  00000330  RWIX
-  FRAM                  0000f100   00000e80  00000726  0000075a  RWIX
+  RAM                   00002000   00000400  000000e7  00000319  RWIX
+  FRAM                  0000f100   00000e80  000007e6  0000069a  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   INT00                 0000ff88   00000002  00000000  00000002  RWIX
@@ -84,11 +84,10 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.data      0    00002000    0000002e     UNINITIALIZED
-                  00002000    0000001d     TEST2.obj (.data)
-                  0000201d    00000001     --HOLE--
-                  0000201e    00000008     TEST2.obj (.data:ReceiveBuffer)
-                  00002026    00000008     TEST2.obj (.data:TransmitBuffer)
+.data      0    00002000    0000003c     UNINITIALIZED
+                  00002000    0000002c     TEST_2PID.obj (.data)
+                  0000202c    00000008     TEST_2PID.obj (.data:ReceiveBuffer)
+                  00002034    00000008     TEST_2PID.obj (.data:TransmitBuffer)
 
 .TI.persistent 
 *          0    0000f100    00000000     UNINITIALIZED
@@ -115,32 +114,34 @@ section   page    origin      length       input sections
 
 .const     0    0000f134    00000000     UNINITIALIZED
 
-.text      0    0000f134    00000632     
-                  0000f134    0000019e     TEST2.obj (.text:main)
-                  0000f2d2    00000108     rts430x_lc_sd_eabi.lib : mult64.asm.obj (.text:__mpyll)
-                  0000f3da    00000100     TEST2.obj (.text:PID_function)
-                  0000f4da    000000ee     rts430x_lc_sd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  0000f5c8    0000006a                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  0000f632    00000040                            : cpy_util.asm.obj (.text:__memcpy_far)
-                  0000f672    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  0000f6b0    0000003c                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  0000f6ec    00000026                            : mult32.asm.obj (.text)
-                  0000f712    00000022                            : mult1632.asm.obj (.text:__mpyul)
-                  0000f734    00000014                            : memset.c.obj (.text:memset)
-                  0000f748    00000012                            : memcpy.c.obj (.text:memcpy)
-                  0000f75a    00000006                            : exit.c.obj (.text:abort)
-                  0000f760    00000004                            : pre_init.c.obj (.text:_system_pre_init)
-                  0000f764    00000002                            : startup.c.obj (.text:_system_post_cinit)
+.text      0    0000f134    000006dc     
+                  0000f134    0000022c     TEST_2PID.obj (.text:main)
+                  0000f360    0000011c     TEST_2PID.obj (.text:PID_function)
+                  0000f47c    00000108     rts430x_lc_sd_eabi.lib : mult64.asm.obj (.text:__mpyll)
+                  0000f584    000000ee                            : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  0000f672    0000006a                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  0000f6dc    00000040                            : cpy_util.asm.obj (.text:__memcpy_far)
+                  0000f71c    0000003e                            : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  0000f75a    0000003c                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  0000f796    00000026                            : mult32.asm.obj (.text)
+                  0000f7bc    00000022                            : mult1632.asm.obj (.text:__mpyul)
+                  0000f7de    00000014                            : memset.c.obj (.text:memset)
+                  0000f7f2    00000012                            : memcpy.c.obj (.text:memcpy)
+                  0000f804    00000006                            : exit.c.obj (.text:abort)
+                  0000f80a    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+                  0000f80e    00000002                            : startup.c.obj (.text:_system_post_cinit)
 
 .text:_isr 
-*          0    0000f766    000000c0     
-                  0000f766    0000007e     TEST2.obj (.text:_isr:USCI_B0_ISR)
-                  0000f7e4    0000001e     TEST2.obj (.text:_isr:ADC_ISR)
-                  0000f802    0000001c     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
-                  0000f81e    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    0000f810    000000d6     
+                  0000f810    0000007e     TEST_2PID.obj (.text:_isr:USCI_B0_ISR)
+                  0000f88e    00000034     TEST_2PID.obj (.text:_isr:ADC_ISR)
+                  0000f8c2    0000001c     rts430x_lc_sd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
+                  0000f8de    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
-.bss       0    0000202e    00000002     UNINITIALIZED
-                  0000202e    00000002     (.common:ADC_Result)
+.bss       0    0000203c    0000000b     UNINITIALIZED
+                  0000203c    00000006     (.common:ADC_Result)
+                  00002042    00000004     (.common:error)
+                  00002046    00000001     (.common:i)
 
 .stack     0    00002360    000000a0     UNINITIALIZED
                   00002360    00000002     rts430x_lc_sd_eabi.lib : boot.c.obj (.stack)
@@ -156,10 +157,10 @@ PORT1      0    0000ffe6    00000002
                   0000ffe6    00000002     rts430x_lc_sd_eabi.lib : int47.asm.obj (.int47)
 
 ADC        0    0000ffe8    00000002     
-                  0000ffe8    00000002     TEST2.obj (.int48)
+                  0000ffe8    00000002     TEST_2PID.obj (.int48)
 
 EUSCI_B0   0    0000ffea    00000002     
-                  0000ffea    00000002     TEST2.obj (.int49)
+                  0000ffea    00000002     TEST_2PID.obj (.int49)
 
 EUSCI_A0   0    0000ffec    00000002     
                   0000ffec    00000002     rts430x_lc_sd_eabi.lib : int50.asm.obj (.int50)
@@ -206,9 +207,9 @@ MODULE SUMMARY
        Module                       code   ro data   rw data
        ------                       ----   -------   -------
     .\
-       TEST2.obj                    826    4         47     
+       TEST_2PID.obj                1018   4         71     
     +--+----------------------------+------+---------+---------+
-       Total:                       826    4         47     
+       Total:                       1018   4         71     
                                                             
     C:\ti\ccs1011\ccs\tools\compiler\ti-cgt-msp430_20.2.1.LTS\lib\rts430x_lc_sd_eabi.lib
        mult64.asm.obj               264    0         0      
@@ -244,14 +245,14 @@ MODULE SUMMARY
        Stack:                       0      0         160    
        Linker Generated:            0      51        0      
     +--+----------------------------+------+---------+---------+
-       Grand Total:                 1778   81        207    
+       Grand Total:                 1970   81        231    
 
 
 LINKER GENERATED COPY TABLES
 
 __TI_cinit_table @ 0000f124 records: 2, size/record: 8, table size: 16
-	.data: load addr=0000f100, load size=00000011 bytes, run addr=00002000, run size=0000002e bytes, compression=lzss
-	.bss: load addr=0000f11e, load size=00000006 bytes, run addr=0000202e, run size=00000002 bytes, compression=zero_init
+	.data: load addr=0000f100, load size=00000011 bytes, run addr=00002000, run size=0000003c bytes, compression=lzss
+	.bss: load addr=0000f11e, load size=00000006 bytes, run addr=0000203c, run size=0000000b bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
@@ -296,9 +297,8 @@ address   name
 00000712  ADCMEM0                                
 00000713  ADCMEM0_H                              
 00000712  ADCMEM0_L                              
-0000201c  ADC_FLAG                               
-0000f7e4  ADC_ISR                                
-0000202e  ADC_Result                             
+0000f88e  ADC_ISR                                
+0000203c  ADC_Result                             
 00000660  BAKMEM0                                
 00000661  BAKMEM0_H                              
 00000660  BAKMEM0_L                              
@@ -347,7 +347,7 @@ address   name
 00000672  BAKMEM9                                
 00000673  BAKMEM9_H                              
 00000672  BAKMEM9_L                              
-0000f75a  C$$EXIT                                
+0000f804  C$$EXIT                                
 000002ee  CAPTIOCTL                              
 000002ef  CAPTIOCTL_H                            
 000002ee  CAPTIOCTL_L                            
@@ -473,7 +473,7 @@ address   name
 00000216  PASELC                                 
 00000217  PASELC_H                               
 00000216  PASELC_L                               
-0000f3da  PID_function                           
+0000f360  PID_function                           
 00000324  PJDIR                                  
 00000325  PJDIR_H                                
 00000324  PJDIR_L                                
@@ -519,7 +519,7 @@ address   name
 00000308  RTCMOD                                 
 00000309  RTCMOD_H                               
 00000308  RTCMOD_L                               
-0000201e  ReceiveBuffer                          
+0000202c  ReceiveBuffer                          
 00002000  ReceiveIndex                           
 00002002  ReceivedValue                          
 00000c80  SAC0OA                                 
@@ -636,7 +636,7 @@ address   name
 00000f00  TRI0CTL                                
 00000f01  TRI0CTL_H                              
 00000f00  TRI0CTL_L                              
-00002026  TransmitBuffer                         
+00002034  TransmitBuffer                         
 00002004  TransmitIndex                          
 00000510  UCA0ABCTL                              
 00000511  UCA0ABCTL_H                            
@@ -725,7 +725,7 @@ address   name
 0000054e  UCB0TXBUF                              
 0000054f  UCB0TXBUF_H                            
 0000054e  UCB0TXBUF_L                            
-0000f766  USCI_B0_ISR                            
+0000f810  USCI_B0_ISR                            
 000001cc  WDTCTL                                 
 000001cd  WDTCTL_H                               
 000001cc  WDTCTL_L                               
@@ -735,10 +735,10 @@ address   name
 0000f134  __TI_CINIT_Limit                       
 0000f112  __TI_Handler_Table_Base                
 0000f11e  __TI_Handler_Table_Limit               
-0000f81e  __TI_ISR_TRAP                          
-0000f5c8  __TI_auto_init_nobinit_nopinit_hold_wdt
-0000f4da  __TI_decompress_lzss                   
-0000f6b0  __TI_decompress_none                   
+0000f8de  __TI_ISR_TRAP                          
+0000f672  __TI_auto_init_nobinit_nopinit_hold_wdt
+0000f584  __TI_decompress_lzss                   
+0000f75a  __TI_decompress_none                   
 0000ffe2  __TI_int45                             
 0000ffe4  __TI_int46                             
 0000ffe6  __TI_int47                             
@@ -756,28 +756,32 @@ address   name
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-0000f672  __TI_zero_init_nomemset                
+0000f71c  __TI_zero_init_nomemset                
 ffffffff  __c_args__                             
-0000f632  __memcpy_far                           
-0000f6ec  __mspabi_mpyl                          
-0000f6ec  __mspabi_mpyl_sw                       
-0000f2d2  __mspabi_mpyll                         
-0000f2d2  __mspabi_mpyll_sw                      
-0000f712  __mspabi_mpyul                         
-0000f712  __mspabi_mpyul_sw                      
-0000f802  _c_int00_noargs                        
+0000f6dc  __memcpy_far                           
+0000f796  __mspabi_mpyl                          
+0000f796  __mspabi_mpyl_sw                       
+0000f47c  __mspabi_mpyll                         
+0000f47c  __mspabi_mpyll_sw                      
+0000f7bc  __mspabi_mpyul                         
+0000f7bc  __mspabi_mpyul_sw                      
+0000f8c2  _c_int00_noargs                        
 0000fffe  _reset_vector                          
 00002360  _stack                                 
-0000f764  _system_post_cinit                     
-0000f760  _system_pre_init                       
-0000f75a  abort                                  
-00002008  error                                  
-00002014  error_i                                
+0000f80e  _system_post_cinit                     
+0000f80a  _system_pre_init                       
+0000f804  abort                                  
+00002008  avg                                    
+00002042  error                                  
+00002024  error_i_heater                         
+00002014  error_i_pump                           
+00002046  i                                      
 00002006  ideal                                  
 0000f134  main                                   
-0000f748  memcpy                                 
-0000f734  memset                                 
-0000200c  u                                      
+0000f7f2  memcpy                                 
+0000f7de  memset                                 
+0000201c  u_heater                               
+0000200c  u_pump                                 
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1241,13 +1245,16 @@ address   name
 00002002  ReceivedValue                          
 00002004  TransmitIndex                          
 00002006  ideal                                  
-00002008  error                                  
-0000200c  u                                      
-00002014  error_i                                
-0000201c  ADC_FLAG                               
-0000201e  ReceiveBuffer                          
-00002026  TransmitBuffer                         
-0000202e  ADC_Result                             
+00002008  avg                                    
+0000200c  u_pump                                 
+00002014  error_i_pump                           
+0000201c  u_heater                               
+00002024  error_i_heater                         
+0000202c  ReceiveBuffer                          
+00002034  TransmitBuffer                         
+0000203c  ADC_Result                             
+00002042  error                                  
+00002046  i                                      
 00002360  _stack                                 
 00002400  __STACK_END                            
 0000f112  __TI_Handler_Table_Base                
@@ -1255,28 +1262,28 @@ address   name
 0000f124  __TI_CINIT_Base                        
 0000f134  __TI_CINIT_Limit                       
 0000f134  main                                   
-0000f2d2  __mspabi_mpyll                         
-0000f2d2  __mspabi_mpyll_sw                      
-0000f3da  PID_function                           
-0000f4da  __TI_decompress_lzss                   
-0000f5c8  __TI_auto_init_nobinit_nopinit_hold_wdt
-0000f632  __memcpy_far                           
-0000f672  __TI_zero_init_nomemset                
-0000f6b0  __TI_decompress_none                   
-0000f6ec  __mspabi_mpyl                          
-0000f6ec  __mspabi_mpyl_sw                       
-0000f712  __mspabi_mpyul                         
-0000f712  __mspabi_mpyul_sw                      
-0000f734  memset                                 
-0000f748  memcpy                                 
-0000f75a  C$$EXIT                                
-0000f75a  abort                                  
-0000f760  _system_pre_init                       
-0000f764  _system_post_cinit                     
-0000f766  USCI_B0_ISR                            
-0000f7e4  ADC_ISR                                
-0000f802  _c_int00_noargs                        
-0000f81e  __TI_ISR_TRAP                          
+0000f360  PID_function                           
+0000f47c  __mspabi_mpyll                         
+0000f47c  __mspabi_mpyll_sw                      
+0000f584  __TI_decompress_lzss                   
+0000f672  __TI_auto_init_nobinit_nopinit_hold_wdt
+0000f6dc  __memcpy_far                           
+0000f71c  __TI_zero_init_nomemset                
+0000f75a  __TI_decompress_none                   
+0000f796  __mspabi_mpyl                          
+0000f796  __mspabi_mpyl_sw                       
+0000f7bc  __mspabi_mpyul                         
+0000f7bc  __mspabi_mpyul_sw                      
+0000f7de  memset                                 
+0000f7f2  memcpy                                 
+0000f804  C$$EXIT                                
+0000f804  abort                                  
+0000f80a  _system_pre_init                       
+0000f80e  _system_post_cinit                     
+0000f810  USCI_B0_ISR                            
+0000f88e  ADC_ISR                                
+0000f8c2  _c_int00_noargs                        
+0000f8de  __TI_ISR_TRAP                          
 0000ffe2  __TI_int45                             
 0000ffe4  __TI_int46                             
 0000ffe6  __TI_int47                             
@@ -1297,4 +1304,4 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start                   
 ffffffff  __c_args__                             
 
-[512 symbols]
+[515 symbols]
